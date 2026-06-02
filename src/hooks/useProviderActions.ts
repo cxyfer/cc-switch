@@ -313,11 +313,18 @@ export function useProviderActions(
         if (script.enabled && script.templateType === "opencode_go") {
           nextMeta.opencodeGoWorkspaceId =
             opencodeGoMeta?.workspaceId?.trim() || undefined;
-          nextMeta.opencodeGoShowRolling =
-            opencodeGoMeta?.showRolling !== false;
-          nextMeta.opencodeGoShowWeekly = opencodeGoMeta?.showWeekly !== false;
-          nextMeta.opencodeGoShowMonthly =
-            opencodeGoMeta?.showMonthly !== false;
+          if (opencodeGoMeta?.showRolling !== undefined) {
+            nextMeta.opencodeGoShowRolling =
+              opencodeGoMeta.showRolling !== false;
+          }
+          if (opencodeGoMeta?.showWeekly !== undefined) {
+            nextMeta.opencodeGoShowWeekly =
+              opencodeGoMeta.showWeekly !== false;
+          }
+          if (opencodeGoMeta?.showMonthly !== undefined) {
+            nextMeta.opencodeGoShowMonthly =
+              opencodeGoMeta.showMonthly !== false;
+          }
           const authCookie = opencodeGoMeta?.authCookie?.trim();
           if (authCookie) {
             nextMeta.opencodeGoAuthCookie = authCookie;

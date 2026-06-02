@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { afterAll, afterEach, beforeAll, vi } from "vitest";
+import { afterAll, afterEach, beforeAll, beforeEach, vi } from "vitest";
 import { cleanup } from "@testing-library/react";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
@@ -22,10 +22,17 @@ beforeAll(async () => {
   });
 });
 
+beforeEach(() => {
+  localStorage.clear();
+  sessionStorage.clear();
+});
+
 afterEach(() => {
   cleanup();
   resetProviderState();
   server.resetHandlers();
+  localStorage.clear();
+  sessionStorage.clear();
   vi.clearAllMocks();
 });
 

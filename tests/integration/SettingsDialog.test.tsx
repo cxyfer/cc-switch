@@ -76,6 +76,26 @@ vi.mock("@/components/settings/ThemeSettings", () => ({
   ThemeSettings: () => <div data-testid="theme-settings">theme</div>,
 }));
 
+vi.mock("@/components/settings/AppVisibilitySettings", () => ({
+  AppVisibilitySettings: () => <div data-testid="app-visibility-settings" />,
+}));
+
+vi.mock("@/components/settings/SkillStorageLocationSettings", () => ({
+  SkillStorageLocationSettings: () => (
+    <div data-testid="skill-storage-location-settings" />
+  ),
+}));
+
+vi.mock("@/components/settings/SkillSyncMethodSettings", () => ({
+  SkillSyncMethodSettings: () => (
+    <div data-testid="skill-sync-method-settings" />
+  ),
+}));
+
+vi.mock("@/components/settings/TerminalSettings", () => ({
+  TerminalSettings: () => <div data-testid="terminal-settings" />,
+}));
+
 vi.mock("@/components/settings/WindowSettings", () => ({
   WindowSettings: ({ onChange }: any) => (
     <button onClick={() => onChange({ minimizeToTrayOnClose: false })}>

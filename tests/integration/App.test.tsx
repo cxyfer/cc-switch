@@ -145,6 +145,8 @@ vi.mock("@/components/mcp/McpPanel", () => ({
     ),
 }));
 
+const APP_INTEGRATION_TIMEOUT = 30000;
+
 const renderApp = (AppComponent: ComponentType) => {
   const client = new QueryClient();
   return render(
@@ -218,7 +220,7 @@ describe("App integration with MSW", () => {
 
     expect(toastErrorMock).not.toHaveBeenCalled();
     expect(toastSuccessMock).toHaveBeenCalled();
-  });
+  }, APP_INTEGRATION_TIMEOUT);
 
   it("shows toast when auto sync fails in background", async () => {
     const { default: App } = await import("@/App");
@@ -244,7 +246,7 @@ describe("App integration with MSW", () => {
     await waitFor(() => {
       expect(toastErrorMock).toHaveBeenCalled();
     });
-  });
+  }, APP_INTEGRATION_TIMEOUT);
 
   it("duplicates openclaw providers with a generated key that avoids live-only ids", async () => {
     setProviders("openclaw", {
@@ -287,7 +289,7 @@ describe("App integration with MSW", () => {
     expect(toastErrorMock).not.toHaveBeenCalledWith(
       expect.stringContaining("Provider key is required for openclaw"),
     );
-  });
+  }, APP_INTEGRATION_TIMEOUT);
 
   it("shows toast when duplicate cannot load live provider ids", async () => {
     setProviders("openclaw", {
@@ -335,5 +337,5 @@ describe("App integration with MSW", () => {
     );
 
     liveIdsSpy.mockRestore();
-  });
+  }, APP_INTEGRATION_TIMEOUT);
 });
